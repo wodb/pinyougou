@@ -29,16 +29,26 @@ dataDir=/root/zookeeper-3.4.6/data
 # 品优购(pinyougou)
 
 ## 创建工程
-> parent。引入maven(pom)
+1 parent。引入maven(pom)
 
-> pojo(.jar)
+2 pojo(.jar)
 
-> dao(.jar)
+	需要实现Serializable。因为要在网络中传输
 
-> common(.jar)
+3 dao(.jar)
 
-> sellergoods-interface(.jar)
+	引入跟数据库相关jar包
+	引入pojo(依赖)
 
-> sellergoods-service(.war)
+4 common(.jar)
 
-> shop-web(.war)
+5 sellergoods-interface(.jar)
+
+6 sellergoods-service(.war)
+```
+<!-- 访问dubbo自己占用的端口 -->
+<dubbo:protocol name="dubbo" port="20881"></dubbo:protocol>
+```
+7 shop-web(.war)
+
+8 manager-web(.war)
