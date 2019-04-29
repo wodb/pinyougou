@@ -7,7 +7,6 @@
   <modules>
   	<module>pinyougou-pojo</module>
   	<module>pinyougou-dao</module>
-  	<module>pinyougou-interface</module>
   	<module>pinyougou-common</module>
   	<module>pinyougou-shop-web</module>
   	<module>pinyougou-manager-web</module>
@@ -34,7 +33,8 @@
 		<activemq.version>5.11.2</activemq.version>
 		<security.version>3.2.3.RELEASE</security.version>		
 		<solrj.version>4.10.3</solrj.version>
-		<ik.version>2012_u6</ik.version>		
+		<ik.version>2012_u6</ik.version>	
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  	
 	</properties>
 	
 	<dependencyManagement>
