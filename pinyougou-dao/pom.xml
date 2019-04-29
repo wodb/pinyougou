@@ -6,6 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>pinyougou-dao</artifactId>
+  <packaging>jar</packaging>
   
   <dependencies>
 
@@ -35,8 +36,13 @@
 	<dependency>
 		<groupId>com.alibaba</groupId>
 		<artifactId>druid</artifactId>		
-	</dependency>	
-  	
+	</dependency>
+
+	<dependency>
+		<groupId>com.pinyougou</groupId>
+		<artifactId>pinyougou-pojo</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
   </dependencies>
   
 </project>
