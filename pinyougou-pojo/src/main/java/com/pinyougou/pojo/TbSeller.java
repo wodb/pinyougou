@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class TbSeller implements Serializable {
-    private String sellerId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String sellerId;
 
     private String name;
 

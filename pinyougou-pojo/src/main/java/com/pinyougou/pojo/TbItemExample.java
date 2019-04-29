@@ -7,7 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 public class TbItemExample implements Serializable {
-    protected String orderByClause;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected String orderByClause;
 
     protected boolean distinct;
 

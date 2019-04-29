@@ -3,7 +3,12 @@ package com.pinyougou.pojo;
 import java.io.Serializable;
 
 public class TbProvinces implements Serializable {
-    private Integer id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String provinceid;
 

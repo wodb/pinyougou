@@ -5,7 +5,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TbItem implements Serializable {
-    private Long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
 
     private String title;
 

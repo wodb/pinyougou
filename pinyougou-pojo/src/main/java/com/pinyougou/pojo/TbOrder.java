@@ -5,7 +5,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TbOrder implements Serializable {
-    private Long orderId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long orderId;
 
     private BigDecimal payment;
 

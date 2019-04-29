@@ -3,7 +3,12 @@ package com.pinyougou.pojo;
 import java.io.Serializable;
 
 public class TbGoodsDesc implements Serializable {
-    private Long goodsId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Long goodsId;
 
     private String introduction;
 
