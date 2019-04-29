@@ -1,5 +1,10 @@
 # zookeeper
 
+![zookeeper](./screenshots/1383119-20180717001954161-165278124.png)
+
+图片alt就是显示在图片下面的文字，相当于对图片内容的解释。
+图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加
+
 #### 安装步骤
 
 1.安装jdk
@@ -45,10 +50,21 @@ dataDir=/root/zookeeper-3.4.6/data
 5 sellergoods-interface(.jar)
 
 6 sellergoods-service(.war)
-```
-<!-- 访问dubbo自己占用的端口 -->
-<dubbo:protocol name="dubbo" port="20881"></dubbo:protocol>
-```
+
+	在web.xml中引入spring配置文件。
+	在pom中增加interface.jar。加入interface.jar之后会依赖传递进来pojo
+	使用@Autowride自动注入dao方法，dao是在本地运行所以可以实现自动装配功能。进行调用
+	在spring配置文件中增加dubbo提供者
+	```
+		<!-- 在dubbo中的端口号.可能会有多个service 使用端口号区分开 -->
+		<dubbo:protocol name="dubbo" port="20881" />
+		<dubbo:application name="pinyougou-sellergoods-service"/>  
+    <dubbo:registry address="zookeeper://192.168.3.101:2181"/>
+    <dubbo:annotation package="com.pinyougou.sellergoods.service.impl" /> 
+	```
+
 7 shop-web(.war)
 
 8 manager-web(.war)
+	
+	@Reference可以自动装配提供者的service
