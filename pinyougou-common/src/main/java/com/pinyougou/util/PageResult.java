@@ -11,13 +11,13 @@ public class PageResult implements Serializable {
 	
 	private String status;
 	
-	private List<Object> rows;
+	private List rows;
 	
 	private Long total;
 	
 	private int page;
 
-	public PageResult(String message, String status, List<Object> rows, Long total, int page) {
+	public PageResult(String message, String status, List rows, Long total, int page) {
 		this.message = message;
 		this.status = status;
 		this.rows = rows;
@@ -41,11 +41,11 @@ public class PageResult implements Serializable {
 		this.status = status;
 	}
 
-	public List<Object> getRows() {
+	public List getRows() {
 		return rows;
 	}
 
-	public void setRows(List<Object> rows) {
+	public void setRows(List rows) {
 		this.rows = rows;
 	}
 
