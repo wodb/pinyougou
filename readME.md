@@ -68,6 +68,21 @@ dataDir=/root/zookeeper-3.4.6/data
 	
 	@Reference可以自动装配提供者的service
 
+	在调用service中返回Page对象，调用之后报以下错误
+
+![错误](./screenshots/20190430101551.jpg)
+
+	总结就是这个错误：java.lang.NoClassDefFoundError: org/apache/ibatis/session/RowBounds
+	这是因为web工程中没有依赖MyBatis的包，在pom.xml中再次添加上相应的依赖就行。
+	<dependency>
+	    <groupId>com.github.pagehelper</groupId>
+	    <artifactId>pagehelper</artifactId>	   
+	</dependency>
+	<dependency>
+		<groupId>com.github.miemiedev</groupId>
+		<artifactId>mybatis-paginator</artifactId>		
+	</dependency>
+
 ---
 
 # 注解功能(@)
