@@ -12,7 +12,7 @@ import com.pinyougou.util.PageResult;
 
 @RestController
 @RequestMapping("/brand")
-public class BrandControll {
+public class BrandController {
 
 	@Reference
 	private BrandService brandService;
