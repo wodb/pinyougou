@@ -60,12 +60,12 @@ dataDir=/root/zookeeper-3.4.6/data
 	<dubbo:protocol name="dubbo" port="20881" />
 	<dubbo:application name="pinyougou-sellergoods-service"/>  
 	<dubbo:registry address="zookeeper://192.168.3.101:2181"/>
-	<dubbo:annotation package="com.pinyougou.sellergoods.service.impl" /> 
+	<dubbo:annotation package="com.pinyougou.sellergoods.service.impl" />
 
 7.shop-web(.war)
 
 8.manager-web(.war)
-	
+
 	@Reference可以自动装配提供者的service
 
 	在调用service中返回Page对象，调用之后报以下错误
@@ -84,9 +84,10 @@ dataDir=/root/zookeeper-3.4.6/data
 	</dependency>
 
 ---
+# 代码记录
 
-# 注解功能(@)
-	
+## spring注解功能(@)
+
 **@Param**(mybatis)
 
 ```
@@ -107,7 +108,7 @@ public List<Role> findRoleByMix(@Param("roleP") RoleParam role, @Param("permissi
 @RequestMapping("/list")
 public String test(int userId) {
   return "list";
-} 
+}
 @RequestMapping("/list")
 public String test(@RequestParam int userId) {
   return "list";
@@ -144,7 +145,7 @@ public void findPet(@PathVariable String petId) {
 public class UserController {
   @PostMapping
   public User create (@Valid @RequestBody User user) {
-     
+
   }
 }
 public class User {
@@ -155,3 +156,23 @@ public class User {
 }
 ```
 ![注解](./screenshots/20190430085603.jpg)
+
+## mybatis
+```
+<!--
+    <insert></insert> 中没有resultType属性，但是<selectKey></selectKey> 标签是有的。
+    order="AFTER" 表示先执行插入语句，之后再执行查询语句。
+    可被设置为 BEFORE 或 AFTER。
+    如果设置为 BEFORE,那么它会首先选择主键,设置 keyProperty 然后执行插入语句。
+    如果设置为 AFTER,那么先执行插入语句,然后是 selectKey 元素-这和如 Oracle 数据库相似,可以在插入语句中嵌入序列调用
+    keyProperty="userId"  表示将自增长后的Id赋值给实体类中的userId字段。
+    SELECT LAST_INSERT_ID() 表示MySQL语法中查询出刚刚插入的记录自增长Id.
+    实体类中uerId 要有getter() and setter(); 方法
+ -->
+<insert id="insertProduct" parameterType="domain.model.ProductBean">
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="productId">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO t_product(productName,productDesrcible,merchantId)values(#{productName},#{productDesrcible},#{merchantId});
+ </insert>
+```
