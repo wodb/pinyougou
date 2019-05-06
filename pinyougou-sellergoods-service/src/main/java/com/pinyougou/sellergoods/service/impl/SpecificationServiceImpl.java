@@ -34,12 +34,25 @@ public class SpecificationServiceImpl implements SpecificationService {
 		criteria.andSpecIdEqualTo(id);
 		
 		List<TbSpecificationOption> selectByExample = specificationOptionMapper.selectByExample(example);
-		System.out.println(selectByExample);
+
 		// 向VO中添加
 		specificationVO.setSpecification(specification);
 		specificationVO.setSpecificationOption(selectByExample);
 		
 		return specificationVO;
+	}
+
+	@Override
+	public void save(SpecificationVO specificationVO) {
+		// 在inser方法中增加返回ID选项。保存成功后会有ID字段
+		TbSpecification specification = specificationVO.getSpecification();
+		specificationMapper.insert(specification);
+		List<TbSpecificationOption> specificationOption = specificationVO.getSpecificationOption();
+		
+		for(TbSpecificationOption o : specificationOption) {
+			o.setSpecId(specification.getId());
+			specificationOptionMapper.insert(o);
+		}		
 	}
 
 }

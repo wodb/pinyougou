@@ -1,6 +1,7 @@
 package com.pinyougou.manager.controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,18 @@ public class SpecificationController {
 	public ResultUtil detail(@PathVariable Long id) {
 		try {
 			SpecificationVO VO = specificationService.detail(id);
-			return new ResultUtil("success", "添加成功", VO);
+			return new ResultUtil("success", "成功", VO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResultUtil("error", e.getMessage(), null);
+		}
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public ResultUtil save(@RequestBody SpecificationVO specificationVO) {
+		try {
+			specificationService.save(specificationVO);
+			return new ResultUtil("success", "添加成功", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResultUtil("error", e.getMessage(), null);

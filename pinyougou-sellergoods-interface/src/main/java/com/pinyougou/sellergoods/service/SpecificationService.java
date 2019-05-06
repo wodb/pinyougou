@@ -6,4 +6,6 @@ public interface SpecificationService {
 	
 	public SpecificationVO detail(Long id);
 	
+	public void save(SpecificationVO specificationVO);
+	
 }

@@ -157,6 +157,17 @@ public class User {
 ```
 ![注解](./screenshots/20190430085603.jpg)
 
+**@RequestBody**
+```java
+/*接收json请求的参数 content-type要设置成application-json*/
+public class UserController {
+	@PostMapping
+	public User create(@RequestBody User user) {
+
+	}
+}
+```
+
 ## mybatis
 ```
 <!--
