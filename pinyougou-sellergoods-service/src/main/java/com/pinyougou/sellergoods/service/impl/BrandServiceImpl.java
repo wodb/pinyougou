@@ -11,7 +11,7 @@ import com.pinyougou.mapper.TbBrandMapper;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.service.BrandService;
 import com.pinyougou.util.PageResult;
-//import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -19,20 +19,20 @@ public class BrandServiceImpl implements BrandService {
 	@Autowired
 	private TbBrandMapper tbBrandMapper;
 
-//	@Autowired
-//	private RedisTemplate redisTemplate;
+	@Autowired
+	private RedisTemplate redisTemplate;
 	
 	@Override
 	public List<TbBrand> findAll() {
-        /*List<TbBrand> list = (List<TbBrand>) redisTemplate.boundHashOps("brand").get("allBrand");
+        List<TbBrand> list = (List<TbBrand>) redisTemplate.boundHashOps("brand").get("allBrand");
         if (list == null) {
             list = tbBrandMapper.selectByExample(null);
             redisTemplate.boundHashOps("brand").put("allBrand", list);
             System.out.println("从数据库中查询");
         } else {
             System.out.println("从缓存中查询");
-        }*/
-        return tbBrandMapper.selectByExample(null);
+        }
+        return list;
 	}
 	
 	@Override
