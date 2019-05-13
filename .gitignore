@@ -23,6 +23,7 @@
 .idea
 .project
 .settings
+*.iml
 
 npm-debug.log*
 yarn-debug.log*
