@@ -27,7 +27,9 @@ solr是开源搜索服务器，它使用REST和httpApi。它建立在lucenne(全
  
 ## 中文分析器(IK)
  1. 先导入jar包(IKAnalyzer2012FF_u1.jar)
+ 
  2. 引入3个配置文件。在WEB-INF下新建一个classes文件夹，把配置文件全部放入
+ 
  3. 修改solrhome中的E:\solrhome\collection1\conf\schema.xml
  
  4. 添加配置
@@ -39,3 +41,13 @@ solr是开源搜索服务器，它使用REST和httpApi。它建立在lucenne(全
   ```
 ## 域
  stored 是否进行存储
+ 
+## 注解
+ * @Filed 字段 对应schema.xml里面配置name
+ 
+ * @Dynamic 动态域
+    ```
+    @Dynamic
+    @Field("item_spec_*")
+    private Map<String, String> specMap;
+    ```
