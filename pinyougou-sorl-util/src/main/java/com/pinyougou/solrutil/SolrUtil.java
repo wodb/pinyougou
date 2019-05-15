@@ -8,10 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.solr.core.SolrTemplate;
+import org.springframework.data.solr.core.query.Criteria;
+import org.springframework.data.solr.core.query.Query;
+import org.springframework.data.solr.core.query.SimpleQuery;
+import org.springframework.data.solr.core.query.result.ScoredPage;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @Component("solrUtil")
 public class SolrUtil {
@@ -25,8 +31,13 @@ public class SolrUtil {
         // 加载spring文件
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath*:spring/applicationContext*.xml");
         SolrUtil bean = (SolrUtil) applicationContext.getBean("solrUtil");
-        bean.importSolr();
-        System.out.println("添加成功");
+//        bean.importSolr();
+
+        Map<String, String> map = new ConcurrentHashMap<>();
+
+        map.put("keyworkds", "阿尔卡特");
+
+        bean.searchQuery(map);
     }
 
     public void importSolr() {
@@ -45,7 +56,22 @@ public class SolrUtil {
 
         solrTemplate.saveBeans(items);
         solrTemplate.commit();
+        System.out.println("添加成功");
 
+    }
+
+    public void searchQuery(Map map) {
+
+        Query query = new SimpleQuery("*:*");
+        Criteria criteria = new Criteria("item_keywords").is(map.get("keyworkds"));
+        query.addCriteria(criteria);
+
+        ScoredPage<TbItem> page = solrTemplate.queryForPage(query, TbItem.class);
+        List<TbItem> content = page.getContent();
+
+        for (TbItem item : content) {
+            System.out.println(item.getTitle());
+        }
     }
 
 
